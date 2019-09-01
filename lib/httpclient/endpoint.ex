@@ -12,7 +12,7 @@ defmodule Httpclient.Endpoint do
   plug(:match)
 
   plug(Plug.Parsers,
-    parsers: [:json],
+    parsers: [:urlencoded,:json],
     pass: ["application/json"],
     json_decoder: Poison
   )
