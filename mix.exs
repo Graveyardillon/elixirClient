@@ -28,7 +28,10 @@ defmodule Httpclient.MixProject do
       {:plug, "~> 1.6"},
       {:cowboy, "~> 2.4"},
       {:credo, "~> 0.10", except: :prod, runtime: false},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:httpoison, "~> 1.5.1"},
+      {:ecto, "~> 2.0"},
+      {:postgrex, "~> 0.11"}
     ]
   end
 end
