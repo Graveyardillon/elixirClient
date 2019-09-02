@@ -1,5 +1,8 @@
 defmodule Httpclient.Router do
+
+  require IEx
   use Plug.Router
+  alias Httpclient.Users
 
   plug(:match)
   plug(Plug.Parsers,
@@ -9,26 +12,30 @@ defmodule Httpclient.Router do
   )
   plug(:dispatch)
 
-  @content_type "application/json"
-
   get "/" do
-    render(conn,"sample4post.html")
+    users = 
+        Users.User
+        |>Users.Repo.all
+    IO.inspect(users)
+
+    render(conn,"sample4post.html",users: Enum.map(users, fn(s) -> %{username: s.username,id: s.id} end))
   end
 
   post "/" do
-    IO.inspect(conn.params, label: "Submitted contact")
-    render_json(conn,conn.params)
+
+    body =  Map.put(conn.params,:message,"Post Request is successful!")
+    Map.put(conn.params,:message,"Post Request is successful!")
+    |>IO.inspect( label: "Submitted contact")
+    
+    name = Map.get(conn.params,"name")
+
+    %Users.User{username: name}
+    |>Users.Repo.insert()
+    render_json(conn,body)
   end
 
   match _ do
     send_resp(conn, 404, "Requested page not found!")
-  end
-
-  defp message() do
-    Poison.encode!(%{
-      response_type: "in_channel",
-      text: "Hello World!"
-    })
   end
 
   @template_dir "lib/httpclient/templates" #テンプレートファイルのディレクトリ
@@ -48,5 +55,5 @@ defmodule Httpclient.Router do
     body = Poison.encode!(data)
     send_resp(conn, (status || 200), body)
   end
-
+  
 end

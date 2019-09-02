@@ -1,14 +1,6 @@
 use Mix.Config
 
-config :httpclient, Users.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  database: "httpclient_repo",
-  username: "user",
-  password: "pass",
-  hostname: "localhost"
-
-
-config :httpclient, Users.Repo,
+config :httpclient, Httpclient.Users.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "httpclient_repo",
   username: "postgres",

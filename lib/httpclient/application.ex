@@ -24,7 +24,7 @@ defmodule Httpclient.Application do
   defp children do
     [
       Endpoint,
-      Users.Repo
+      Httpclient.Users.Repo
     ]
   end
 
