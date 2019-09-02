@@ -1,4 +1,4 @@
-defmodule Users.User do
+defmodule Httpclient.Users.User do
     use Ecto.Schema
   
     schema "User" do

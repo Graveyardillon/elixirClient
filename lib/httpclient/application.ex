@@ -23,8 +23,8 @@ defmodule Httpclient.Application do
 
   defp children do
     [
-      Endpoint,  #メイン処理
-      Users.Repo #データベース
+      Endpoint,
+      Httpclient.Users.Repo
     ]
   end
 
